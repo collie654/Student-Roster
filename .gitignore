@@ -1,0 +1,39 @@
+#.gitignore
+
+# Python
+pycache
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Environment / Secrets
+.env
+*.env
+!.env.example
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/build/
+.npm
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_STORE
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
