@@ -9,7 +9,7 @@ class Base(DeclarativeBase):
 
 class District(Base):
     """A school district"""
-    __tablename__ = "districts"
+    __tablename__ = "district"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(200), nullable=False, unique=True)
@@ -25,7 +25,13 @@ class Student(Base):
     last_name = Column(String(100), nullable=False, index=True)
     date_of_birth = Column(Date, nullable=False)
     grade_level = Column(Integer, nullable=False)
-    district_id = Column(Integer, ForeignKey("districts.id"), nullable=False)
+    district_id = Column(Integer, ForeignKey("district.id"), nullable=False, index=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    district = relationship("District", back_populates="students")
+
+
 
 class User(Base):
     """Application user"""
