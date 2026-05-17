@@ -1,4 +1,10 @@
+# This file is Alembics migration runner, it controls how migrations are applied during commands like 'alembic upgrade head'
 import os
+import sys
+# tells pyhton where app package is
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from app.models import Base
+from app import models
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -22,7 +28,8 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+# gives Alembic my model data so it can generate a migration file with my models
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
