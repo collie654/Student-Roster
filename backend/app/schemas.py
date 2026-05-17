@@ -35,7 +35,7 @@ class StudentUpdate(BaseModel):
     district_id:  Optional[int] = None
 
 
-class StudentsResponse(BaseModel):
+class StudentResponse(BaseModel):
     """
     intentionally excludes date_of_birth to minimize data to just what the client needs
     """
