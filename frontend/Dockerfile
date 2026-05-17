@@ -1,13 +1,13 @@
-# frontend/Dockerfile
 FROM node:20-slim
- 
+
 WORKDIR /app
- 
-# Copy package files first.
+
 COPY package.json package-lock.json ./
 RUN npm ci
- 
+
 COPY . .
- 
-EXPOSE 3000
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+RUN npm run build
+
+EXPOSE 4173
+CMD ["sh", "-c", "npx vite preview --host 0.0.0.0 --port ${PORT:-4173}"]
