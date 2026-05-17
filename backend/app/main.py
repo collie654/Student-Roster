@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import auth, students
+import os
  
 app = FastAPI(
     title="Student Roster API",
@@ -10,10 +11,12 @@ app = FastAPI(
     redoc_url="/redoc", # ReDoc at /redoc
 )
  
+origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
 # lets frontend call api
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
